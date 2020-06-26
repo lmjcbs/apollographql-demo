@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import ExchangeRates from './ExchangeRates';
 import * as serviceWorker from './serviceWorker';
 import ApolloClient from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
@@ -11,15 +12,6 @@ import { ApolloProvider } from '@apollo/react-hooks'
 const client = new ApolloClient({
   uri: 'https://48p1r2roz4.sse.codesandbox.io',
 });
-
-const EXCHANGE_RATES = gql`
-    {
-        rates(currency: "USD") {
-            currency
-            rate
-        }
-    }
-`;
 
 client
   .query({
@@ -37,6 +29,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <App />
+      <ExchangeRates />
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
